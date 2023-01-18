@@ -9,3 +9,5 @@ Provide utils for colmap usage.
 # Nerf utils
 
 Provide utils for nerf usage.
+
+Check https://github.com/NVlabs/instant-ngp for installation of instant-NERF.
