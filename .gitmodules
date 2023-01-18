@@ -1,3 +1,9 @@
 [submodule "external/instant-ngp"]
 	path = external/instant-ngp
 	url = https://github.com/NVlabs/instant-ngp.git
+[submodule "external/Detic"]
+	path = external/Detic
+	url = https://github.com/facebookresearch/Detic.git
+[submodule "external/detectron2"]
+	path = external/detectron2
+	url = git@github.com:facebookresearch/detectron2.git
