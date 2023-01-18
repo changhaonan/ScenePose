@@ -11,3 +11,7 @@ Provide utils for colmap usage.
 Provide utils for nerf usage.
 
 Check https://github.com/NVlabs/instant-ngp for installation of instant-NERF.
+
+# Detic utils
+
+Open vocabulary segmentation tools. Detic.
