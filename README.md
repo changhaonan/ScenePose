@@ -15,3 +15,5 @@ Check https://github.com/NVlabs/instant-ngp for installation of instant-NERF.
 # Detic utils
 
 Open vocabulary segmentation tools. Detic.
+
+Say I have an image to detect using a vocabulary.
