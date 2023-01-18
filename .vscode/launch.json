@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Prepare ICRA23",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/colmap_utils/data_prepare.py",
+            "args": [
+                "--src_path",
+                "/media/robot-learning/DATA/ws_Haonan/icra23_data/0001",
+                "--dst_path",
+                "${workspaceFolder}/data/0001"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Prepare MOV",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/colmap_utils/data_prepare.py",
+            "args": [
+                "--src_path",
+                "/home/robot-learning/Projects/ScenePose/data/video_dragon",
+                "--dst_path",
+                "${workspaceFolder}/data/video_dragon",
+                "--src_type",
+                "mov",
+                "--fps",
+                "5"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
