@@ -7,3 +7,6 @@
 [submodule "external/detectron2"]
 	path = external/detectron2
 	url = git@github.com:facebookresearch/detectron2.git
+[submodule "external/OnePose"]
+	path = external/OnePose
+	url = https://github.com/zju3dv/OnePose.git
