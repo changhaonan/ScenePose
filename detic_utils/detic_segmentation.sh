@@ -12,7 +12,10 @@ for f in $SRC_PATH/images/*.jpg; do
     # Log info
     echo "Processing $filename"
     # Run Detic
-    python demo.py --config-file $DETIC_PATH/configs/Detic_LCOCOI21k_CLIP_SwinB_896b32_4x_ft4x_max-size.yaml \
-        --input $SRC_PATH/images/$filename.jpg --output $SRC_PATH/segmentation/$filename.jpg \
+    python demo_v2.py --config-file $DETIC_PATH/configs/Detic_LCOCOI21k_CLIP_SwinB_896b32_4x_ft4x_max-size.yaml \
+        --input $SRC_PATH/images/$filename.jpg \
+        --output $SRC_PATH/seg_vis/$filename.jpg \
+        --seg_output $SRC_PATH/seg/$filename.png \
+        --selected_class 1109 \
         --vocabulary lvis --opts MODEL.WEIGHTS models/Detic_LCOCOI21k_CLIP_SwinB_896b32_4x_ft4x_max-size.pth
 done

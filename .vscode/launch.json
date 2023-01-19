@@ -5,15 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Test Detic V2",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/external/Detic/run_predict.py",
-            "cwd": "${workspaceFolder}/external/Detic",
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
             "name": "Refine",
             "type": "python",
             "request": "launch",
@@ -29,19 +20,21 @@
             "name": "Test_Detic",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/external/Detic/demo.py",
+            "program": "${workspaceFolder}/external/Detic/demo_v2.py",
             "args": [
                 "--config-file",
-                "configs/Detic_LCOCOI21k_CLIP_SwinB_896b32_4x_ft4x_max-size.yaml",
+                "/home/robot-learning/Projects/ScenePose/external/Detic/configs/Detic_LCOCOI21k_CLIP_SwinB_896b32_4x_ft4x_max-size.yaml",
                 "--input",
-                "desk.jpg",
+                "/home/robot-learning/Projects/ScenePose/data/video_dragon/images/0001.jpg",
                 "--output",
-                "output.jpg",
+                "/home/robot-learning/Projects/ScenePose/data/video_dragon/seg_vis/0001.jpg",
+                "--seg_output",
+                "/home/robot-learning/Projects/ScenePose/data/video_dragon/seg/0001.png",
                 "--vocabulary",
                 "lvis",
                 "--opts",
                 "MODEL.WEIGHTS",
-                "models/Detic_LCOCOI21k_CLIP_SwinB_896b32_4x_ft4x_max-size.pth"
+                "models/Detic_LCOCOI21k_CLIP_SwinB_896b32_4x_ft4x_max-size.pth",
             ],
             "cwd": "${workspaceFolder}/external/Detic",
             "console": "integratedTerminal",
