@@ -5,6 +5,49 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Test Detic V2",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/external/Detic/run_predict.py",
+            "cwd": "${workspaceFolder}/external/Detic",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Refine",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/detic_utils/refinement.py",
+            "args": [
+                "--data_path",
+                "/home/robot-learning/Projects/ScenePose/data/video_dragon"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Test_Detic",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/external/Detic/demo.py",
+            "args": [
+                "--config-file",
+                "configs/Detic_LCOCOI21k_CLIP_SwinB_896b32_4x_ft4x_max-size.yaml",
+                "--input",
+                "desk.jpg",
+                "--output",
+                "output.jpg",
+                "--vocabulary",
+                "lvis",
+                "--opts",
+                "MODEL.WEIGHTS",
+                "models/Detic_LCOCOI21k_CLIP_SwinB_896b32_4x_ft4x_max-size.pth"
+            ],
+            "cwd": "${workspaceFolder}/external/Detic",
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
             "name": "Prepare ICRA23",
             "type": "python",
             "request": "launch",
@@ -35,6 +78,6 @@
             ],
             "console": "integratedTerminal",
             "justMyCode": true
-        }
+        },
     ]
 }
