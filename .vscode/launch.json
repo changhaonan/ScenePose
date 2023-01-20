@@ -5,6 +5,76 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "OnePose prepare",
+            "type": "python",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/onepose_utils/data_prepare.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--dataset",
+                "${workspaceFolder}/data/video_dragon_op/video_dragon_op_2",
+                "--nerf_path=${workspaceFolder}/external/instant-ngp",
+                "--aabb_scale=4",
+                "--fps=20",
+                "--redo_sfm"
+            ],
+            "justMyCode": true
+        },
+        {
+            "name": "OnePose feature",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/external/OnePose/feature_matching_object_detector.py",
+            "args": [
+                "+experiment=object_detector_custom.yaml",
+                "n_ref_view=15"
+            ],
+            "cwd": "${workspaceFolder}/external/OnePose",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "OnePose inference",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/external/OnePose/inference.py",
+            "args": [
+                "+experiment=test_GATsSPG_custom.yaml",
+                "object_detect_mode=feature_matching",
+                "save_wis3d=True"
+            ],
+            "cwd": "${workspaceFolder}/external/OnePose",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "OnePose preprocess",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/external/OnePose/run.py",
+            "args": [
+                "+preprocess=sfm_spp_spg_custom.yaml",
+                "redo=True"
+            ],
+            "cwd": "${workspaceFolder}/external/OnePose",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "OnePose preprocess V2",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/external/OnePose/run.py",
+            "args": [
+                "+preprocess=sfm_spp_spg_sample.yaml",
+                "redo=True"
+            ],
+            "cwd": "${workspaceFolder}/external/OnePose",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
             "name": "Refine",
             "type": "python",
             "request": "launch",
