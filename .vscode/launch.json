@@ -5,6 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Check Poses",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/onepose_utils/check_poses.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
             "name": "OnePose prepare",
             "type": "python",
             "request": "launch",

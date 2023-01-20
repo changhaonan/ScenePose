@@ -5,7 +5,7 @@ import cv2
 
 def prepare_colmap_by_nerf(video_path, nerf_path, fps=10, aabb_scale=4):
     os.chdir(video_path)
-    os.system(f"python {nerf_path}/scripts/colmap2nerf.py --video_in video.MOV --video_fps {fps} --run_colmap --aabb_scale {aabb_scale}")
+    os.system(f"python {nerf_path}/scripts/colmap2nerf.py --keep_colmap_coords --video_in video.MOV --video_fps {fps} --run_colmap --aabb_scale {aabb_scale}")
     # copy images to color folder
     copy_image_to_onepose(video_path)
 
@@ -58,10 +58,20 @@ def transfer_camera_to_onepose(data_path):
     intrin = np.array([[fx, 0, cx], [0, fy, cy], [0, 0, 1]])
 
     # write extrinsic ba
-    for i, frame in enumerate(camera_T_json["frames"]):
+    for frame in camera_T_json["frames"]:
+        file_path = frame["file_path"]
+        i = int(file_path.split(".")[-2].split("/")[-1]) - 1  # nerf is 1-indexed, and one-pose is 0-indexed
         frame_T = np.array(frame["transform_matrix"])
+        frame_T = np.linalg.inv(frame_T)
+        flip_mat = np.array([
+			[1, 0, 0, 0],
+			[0, -1, 0, 0],
+			[0, 0, -1, 0],
+			[0, 0, 0, 1]
+		])
+        frame_T = np.matmul(flip_mat, frame_T)  # colmap representation is different from nerf
         extrin_file = os.path.join(extrin_path, f"{i}.txt")
-        np.savetxt(extrin_file, frame_T)
+        np.savetxt(extrin_file, frame_T)  # one-pose is using object pose
 
         intrin_file = os.path.join(intrin_path, f"{i}.txt")
         np.savetxt(intrin_file, intrin)
