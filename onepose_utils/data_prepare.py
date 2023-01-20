@@ -34,7 +34,6 @@ def copy_image_to_onepose(data_path):
     # copy video from video.MOV to Frames.m4v
     in_video_file = os.path.join(data_path, "video.MOV")
     out_video_file = os.path.join(data_path, "Frames.m4v")
-    # os.system(f"ffmpeg -i {in_video_file} -acodec copy -vcodec copy {out_video_file}")
     os.system(f"ffmpeg -i {in_video_file} -vcodec libx264 {out_video_file}")
 
 
