@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export NERF_PATH=/home/robot-learning/Projects/ScenePose/external/instant-ngp
-export VIDEO_PATH=/home/robot-learning/Projects/ScenePose/data/video_bottle
+export VIDEO_PATH=/home/robot-learning/Projects/ScenePose/data/human/human01
 
 # Prepare data
 cd $VIDEO_PATH

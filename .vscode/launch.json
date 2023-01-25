@@ -5,6 +5,24 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Consistent Mask",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/detic_utils/consistent_mask.py",
+            "python": "/home/robot-learning/Software/miniconda3/envs/pytracking/bin/python",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "/home/robot-learning/Projects/pytracking/pytracking"
+        },
+        {
+            "name": "Colmap2O3D",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/colmap_utils/colmap2open3d.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
             "name": "Check Poses",
             "type": "python",
             "request": "launch",
@@ -103,11 +121,11 @@
                 "--config-file",
                 "/home/robot-learning/Projects/ScenePose/external/Detic/configs/Detic_LCOCOI21k_CLIP_SwinB_896b32_4x_ft4x_max-size.yaml",
                 "--input",
-                "/home/robot-learning/Projects/ScenePose/data/video_dragon/images/0001.jpg",
+                "/home/robot-learning/Projects/ScenePose/data/cracker_box/cracker_box_3/images/0001.jpg",
                 "--output",
-                "/home/robot-learning/Projects/ScenePose/data/video_dragon/seg_vis/0001.jpg",
+                "/home/robot-learning/Projects/ScenePose/data/cracker_box/cracker_box_3/seg_vis/0001.jpg",
                 "--seg_output",
-                "/home/robot-learning/Projects/ScenePose/data/video_dragon/seg/0001.png",
+                "/home/robot-learning/Projects/ScenePose/data/cracker_box/cracker_box_3/seg/0001.png",
                 "--vocabulary",
                 "lvis",
                 "--opts",

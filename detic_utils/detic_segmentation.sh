@@ -1,7 +1,11 @@
 #! /bin/bash
 
 export DETIC_PATH=/home/robot-learning/Projects/ScenePose/external/Detic
-export SRC_PATH=/home/robot-learning/Projects/ScenePose/data/video_dragon
+export SRC_PATH=/home/robot-learning/Projects/ScenePose/data/cracker_box/cracker_box_3
+
+# Build export folder if not exist
+mkdir -p $SRC_PATH/seg_vis
+mkdir -p $SRC_PATH/seg
 
 cd $DETIC_PATH
 # Go through all images
@@ -16,6 +20,6 @@ for f in $SRC_PATH/images/*.jpg; do
         --input $SRC_PATH/images/$filename.jpg \
         --output $SRC_PATH/seg_vis/$filename.jpg \
         --seg_output $SRC_PATH/seg/$filename.png \
-        --selected_class 1109 \
+        --selected_class 1997 \
         --vocabulary lvis --opts MODEL.WEIGHTS models/Detic_LCOCOI21k_CLIP_SwinB_896b32_4x_ft4x_max-size.pth
 done
