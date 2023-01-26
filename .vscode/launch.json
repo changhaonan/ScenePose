@@ -92,7 +92,7 @@
             "name": "OnePose preprocess",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/external/OnePose/run.py",
+            "program": "${workspaceFolder}/external/OnePose/run_ext.py",
             "args": [
                 "+preprocess=sfm_spp_spg_custom.yaml",
                 "redo=True"

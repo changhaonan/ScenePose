@@ -39,6 +39,16 @@ def load_camera_txt(camera_path):
     return camera_poses
 
 
+def bbox_o3d_to_onepose(bbox_o3d):
+    # order
+    o3d_order = [0, 1, 2, 3, 4, 5, 6, 7]
+    onepose_order = [0, 4, 3, 1, 6, 2, 5, 7]
+    bbox_onepose = np.zeros((8, 3))
+    for i, j in zip(onepose_order, o3d_order):
+        bbox_onepose[i, :] = bbox_o3d[j, :]
+    return bbox_onepose
+
+
 def load_3d_box(corners3D_path):
     # read txt file
     with open(corners3D_path, "r") as f:
@@ -52,16 +62,18 @@ def load_3d_box(corners3D_path):
         corners3D.append([float(line[0]), float(line[1]), float(line[2])])
     # transform corners3D to visualize format
     corners3D = np.array(corners3D)
+    corners3D_op = bbox_o3d_to_onepose(corners3D)
     # lines span from points 0 to 1, 1 to 2, 2 to 3, etc...
     lines = [[0, 1], [1, 2], [2, 3], [0, 3],
             [4, 5], [5, 6], [6, 7], [4, 7],
             [0, 4], [1, 5], [2, 6], [3, 7]]
+    # lines = [[0, 1], [1, 2],]
 
     # use the same color for all lines
-    colors = [[1, 0, 0] for _ in range(len(lines))]
+    colors = [[0, 1, 0] for _ in range(len(lines))]
 
     line_set = o3d.geometry.LineSet()
-    line_set.points = o3d.utility.Vector3dVector(corners3D)
+    line_set.points = o3d.utility.Vector3dVector(corners3D_op)
     line_set.lines = o3d.utility.Vector2iVector(lines)
     line_set.colors = o3d.utility.Vector3dVector(colors)
     return line_set
