@@ -33,7 +33,7 @@
             "name": "Pytrack [run]",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/scripts/pytracking_run.py",
+            "program": "${workspaceFolder}/scripts/pytrack_run.py",
             "python": "/home/robot-learning/Software/miniconda3/envs/pytracking/bin/python",
             "args": [
                 "--dataset",
