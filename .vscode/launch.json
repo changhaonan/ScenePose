@@ -5,16 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Consistent Mask",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/detic_utils/consistent_mask.py",
-            "python": "/home/robot-learning/Software/miniconda3/envs/pytracking/bin/python",
-            "console": "integratedTerminal",
-            "justMyCode": true,
-            "cwd": "/home/robot-learning/Projects/pytracking/pytracking"
-        },
-        {
             "name": "Colmap2O3D",
             "type": "python",
             "request": "launch",
@@ -23,15 +13,7 @@
             "justMyCode": true
         },
         {
-            "name": "Check Poses",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/onepose_utils/check_poses.py",
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
-            "name": "OnePose prepare",
+            "name": "Camera Pose",
             "type": "python",
             "request": "launch",
             "cwd": "${workspaceFolder}",
@@ -39,7 +21,7 @@
             "console": "integratedTerminal",
             "args": [
                 "--dataset",
-                "${workspaceFolder}/data/cracker_box/cracker_box_3",
+                "${workspaceFolder}/data/kcup/kcup_1",
                 "--nerf_path=${workspaceFolder}/external/instant-ngp",
                 "--aabb_scale=4",
                 "--fps=10",
@@ -48,48 +30,35 @@
             "justMyCode": true
         },
         {
-            "name": "OnePose feature",
+            "name": "2D Mask",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/external/OnePose/feature_matching_object_detector.py",
+            "program": "${workspaceFolder}/detic_utils/consistent_mask.py",
+            "python": "/home/robot-learning/Software/miniconda3/envs/pytracking/bin/python",
             "args": [
-                "+experiment=object_detector_custom.yaml",
-                "n_ref_view=15"
+                "--dataset",
+                "kcup/kcup_1"
             ],
-            "cwd": "${workspaceFolder}/external/OnePose",
             "console": "integratedTerminal",
-            "justMyCode": true
+            "justMyCode": true,
+            "cwd": "/home/robot-learning/Projects/pytracking/pytracking"
         },
         {
-            "name": "OnePose inference",
+            "name": "Seg Mask",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/external/OnePose/inference.py",
+            "program": "${workspaceFolder}/detic_utils/detic_segmentation.py",
             "args": [
-                "+experiment=test_GATsSPG_custom.yaml",
-                "object_detect_mode=GT_box",
-                "save_wis3d=True"
-            ],
-            "cwd": "${workspaceFolder}/external/OnePose",
+                "--detic_path",
+                "${workspaceFolder}/external/Detic", 
+                "--dataset", 
+                "kcup/kcup_1"],
+            "cwd": "${workspaceFolder}/external/Detic",
             "console": "integratedTerminal",
-            "justMyCode": true
+            "justMyCode": false
         },
         {
-            "name": "OnePose inference GT",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/external/OnePose/inference_online.py",
-            "args": [
-                "+experiment=test_GATsSPG_custom.yaml",
-                "object_detect_mode=GT_box",
-                "save_wis3d=True"
-            ],
-            "cwd": "${workspaceFolder}/external/OnePose",
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
-            "name": "OnePose preprocess",
+            "name": "SFM",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/external/OnePose/run_ext.py",
@@ -102,87 +71,18 @@
             "justMyCode": true
         },
         {
-            "name": "OnePose preprocess V2",
+            "name": "OnePose inference",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/external/OnePose/run.py",
+            "program": "${workspaceFolder}/external/OnePose/inference_online.py",
             "args": [
-                "+preprocess=sfm_spp_spg_sample.yaml",
-                "redo=True"
+                "+experiment=test_GATsSPG_custom.yaml",
+                "object_detect_mode=GT_box",
+                "save_wis3d=True"
             ],
             "cwd": "${workspaceFolder}/external/OnePose",
             "console": "integratedTerminal",
             "justMyCode": true
-        },
-        {
-            "name": "Refine",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/detic_utils/refinement.py",
-            "args": [
-                "--data_path",
-                "/home/robot-learning/Projects/ScenePose/data/video_dragon"
-            ],
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
-            "name": "Test_Detic",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/external/Detic/demo_v2.py",
-            "args": [
-                "--config-file",
-                "/home/robot-learning/Projects/ScenePose/external/Detic/configs/Detic_LCOCOI21k_CLIP_SwinB_896b32_4x_ft4x_max-size.yaml",
-                "--input",
-                "/home/robot-learning/Projects/ScenePose/data/cracker_box/cracker_box_3/images/0001.jpg",
-                "--output",
-                "/home/robot-learning/Projects/ScenePose/data/cracker_box/cracker_box_3/seg_vis/0001.jpg",
-                "--seg_output",
-                "/home/robot-learning/Projects/ScenePose/data/cracker_box/cracker_box_3/seg/0001.png",
-                "--attention_bbox_path",
-                "/home/robot-learning/Projects/ScenePose/data/cracker_box/cracker_box_3/bbox_2d/bbox_2d.txt",
-                "--vocabulary",
-                "lvis",
-                "--opts",
-                "MODEL.WEIGHTS",
-                "models/Detic_LCOCOI21k_CLIP_SwinB_896b32_4x_ft4x_max-size.pth",
-            ],
-            "cwd": "${workspaceFolder}/external/Detic",
-            "console": "integratedTerminal",
-            "justMyCode": false
-        },
-        {
-            "name": "Prepare ICRA23",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/colmap_utils/data_prepare.py",
-            "args": [
-                "--src_path",
-                "/media/robot-learning/DATA/ws_Haonan/icra23_data/0001",
-                "--dst_path",
-                "${workspaceFolder}/data/0001"
-            ],
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
-        {
-            "name": "Prepare MOV",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/colmap_utils/data_prepare.py",
-            "args": [
-                "--src_path",
-                "/home/robot-learning/Projects/ScenePose/data/video_dragon",
-                "--dst_path",
-                "${workspaceFolder}/data/video_dragon",
-                "--src_type",
-                "mov",
-                "--fps",
-                "5"
-            ],
-            "console": "integratedTerminal",
-            "justMyCode": true
-        },
+        }
     ]
 }
