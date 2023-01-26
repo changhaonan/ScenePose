@@ -11,6 +11,7 @@ def run_2d_tracker(tracker_name, tracker_param, video_path, pytracking_path, out
     # copy results to output path
     os.system(f"cp {pytracking_path}/tracking_results/{tracker_name}/{tracker_param}/video_video.txt {output_path}/bbox_2d.txt")
 
+
 if __name__ == "__main__":
     pytracking_path = "/home/robot-learning/Projects/pytracking/pytracking"
     tracker_name = "tomp"

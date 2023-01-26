@@ -67,7 +67,21 @@
             "program": "${workspaceFolder}/external/OnePose/inference.py",
             "args": [
                 "+experiment=test_GATsSPG_custom.yaml",
-                "object_detect_mode=feature_matching",
+                "object_detect_mode=GT_box",
+                "save_wis3d=True"
+            ],
+            "cwd": "${workspaceFolder}/external/OnePose",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "OnePose inference GT",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/external/OnePose/inference_online.py",
+            "args": [
+                "+experiment=test_GATsSPG_custom.yaml",
+                "object_detect_mode=GT_box",
                 "save_wis3d=True"
             ],
             "cwd": "${workspaceFolder}/external/OnePose",
@@ -126,6 +140,8 @@
                 "/home/robot-learning/Projects/ScenePose/data/cracker_box/cracker_box_3/seg_vis/0001.jpg",
                 "--seg_output",
                 "/home/robot-learning/Projects/ScenePose/data/cracker_box/cracker_box_3/seg/0001.png",
+                "--attention_bbox_path",
+                "/home/robot-learning/Projects/ScenePose/data/cracker_box/cracker_box_3/bbox_2d/bbox_2d.txt",
                 "--vocabulary",
                 "lvis",
                 "--opts",
