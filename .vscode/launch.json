@@ -8,16 +8,16 @@
             "name": "Colmap2O3D",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/colmap_utils/colmap2open3d.py",
+            "program": "${workspaceFolder}/scripts/colmap2open3d.py",
             "console": "integratedTerminal",
             "justMyCode": true
         },
         {
-            "name": "Camera Pose",
+            "name": "OnePose [prep]",
             "type": "python",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "program": "${workspaceFolder}/onepose_utils/data_prepare.py",
+            "program": "${workspaceFolder}/scripts/onepose_prepare.py",
             "console": "integratedTerminal",
             "args": [
                 "--dataset",
@@ -30,10 +30,10 @@
             "justMyCode": true
         },
         {
-            "name": "2D Mask",
+            "name": "Pytrack [run]",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/detic_utils/consistent_mask.py",
+            "program": "${workspaceFolder}/scripts/pytracking_run.py",
             "python": "/home/robot-learning/Software/miniconda3/envs/pytracking/bin/python",
             "args": [
                 "--dataset",
@@ -44,10 +44,10 @@
             "cwd": "/home/robot-learning/Projects/pytracking/pytracking"
         },
         {
-            "name": "Seg Mask",
+            "name": "Detic [seg]",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/detic_utils/detic_segmentation.py",
+            "program": "${workspaceFolder}/scripts/detic_segmentation.py",
             "args": [
                 "--detic_path",
                 "${workspaceFolder}/external/Detic", 
@@ -58,7 +58,7 @@
             "justMyCode": false
         },
         {
-            "name": "SFM",
+            "name": "OnePose: [sfm]",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/external/OnePose/run_ext.py",
@@ -71,7 +71,7 @@
             "justMyCode": true
         },
         {
-            "name": "OnePose inference",
+            "name": "OnePose: [inf]",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/external/OnePose/inference_online.py",
