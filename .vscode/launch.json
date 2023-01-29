@@ -5,6 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Star [trans]",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/star_transfer.py",
+            "args": [
+                "--dataset",
+                "cracker_box_icg/cracker_box_icg_1"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
             "name": "Colmap2O3D",
             "type": "python",
             "request": "launch",
@@ -21,7 +33,7 @@
             "console": "integratedTerminal",
             "args": [
                 "--dataset",
-                "${workspaceFolder}/data/kcup/kcup_1",
+                "${workspaceFolder}/data/cracker_box_icg/cracker_box_icg_1",
                 "--nerf_path=${workspaceFolder}/external/instant-ngp",
                 "--aabb_scale=4",
                 "--fps=10",
@@ -37,7 +49,7 @@
             "python": "/home/robot-learning/Software/miniconda3/envs/pytracking/bin/python",
             "args": [
                 "--dataset",
-                "kcup/kcup_1"
+                "cracker_box_icg/cracker_box_icg_1"
             ],
             "console": "integratedTerminal",
             "justMyCode": true,
@@ -50,9 +62,10 @@
             "program": "${workspaceFolder}/scripts/detic_segmentation.py",
             "args": [
                 "--detic_path",
-                "${workspaceFolder}/external/Detic", 
-                "--dataset", 
-                "kcup/kcup_1"],
+                "${workspaceFolder}/external/Detic",
+                "--dataset",
+                "cracker_box_icg/cracker_box_icg_1"
+            ],
             "cwd": "${workspaceFolder}/external/Detic",
             "console": "integratedTerminal",
             "justMyCode": false

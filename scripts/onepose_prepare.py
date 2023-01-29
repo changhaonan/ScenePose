@@ -3,14 +3,21 @@ import json
 import numpy as np
 import cv2
 
-def prepare_colmap_by_nerf(video_path, nerf_path, fps=10, aabb_scale=4):
-    os.chdir(video_path)
+def prepare_colmap_by_nerf_by_video(data_set_path, nerf_path, fps=10, aabb_scale=4):
+    os.chdir(data_set_path)
     os.system(f"python {nerf_path}/scripts/colmap2nerf.py --keep_colmap_coords --video_in video.MOV --video_fps {fps} --run_colmap --aabb_scale {aabb_scale}")
     # copy images to color folder
-    copy_image_to_onepose(video_path)
+    copy_image_to_onepose(data_set_path, True)
 
 
-def copy_image_to_onepose(data_path):
+def prepare_colmap_by_nerf_by_image(data_set_path, nerf_path, aabb_scale=4):
+    os.chdir(data_set_path)
+    os.system(f"python {nerf_path}/scripts/colmap2nerf.py --keep_colmap_coords --images images --run_colmap --aabb_scale {aabb_scale}")
+    # copy images to color folder
+    copy_image_to_onepose(data_set_path, False)
+
+
+def copy_image_to_onepose(data_path, use_video):
     # copy images
     input_path = os.path.join(data_path, "images")
     output_path = os.path.join(data_path, "color")
@@ -31,10 +38,11 @@ def copy_image_to_onepose(data_path):
         png_image_file = f"{int(image_file.split('.')[0]) - 1}.png"
         cv2.imwrite(os.path.join(output_path, png_image_file), image)
         cv2.imwrite(os.path.join(output_2_path, png_image_file), image)
-    # copy video from video.MOV to Frames.m4v
-    in_video_file = os.path.join(data_path, "video.MOV")
-    out_video_file = os.path.join(data_path, "Frames.m4v")
-    os.system(f"ffmpeg -i {in_video_file} -vcodec libx264 {out_video_file}")
+    if use_video:
+        # copy video from video.MOV to Frames.m4v
+        in_video_file = os.path.join(data_path, "video.MOV")
+        out_video_file = os.path.join(data_path, "Frames.m4v")
+        os.system(f"ffmpeg -i {in_video_file} -vcodec libx264 {out_video_file}")
 
 
 def transfer_camera_to_onepose(data_path):
@@ -94,12 +102,15 @@ if __name__ == "__main__":
     parser.add_argument("--fps", type=int, default=10)
     parser.add_argument("--aabb_scale", type=int, default=4)
     parser.add_argument("--redo_sfm", action="store_true")
+    parser.add_argument("--use_video", action="store_true")
     args = parser.parse_args()
 
     # Run colmap first to get a camera poses
-    video_path = args.dataset
     nerf_path = args.nerf_path
     if args.redo_sfm:
-        prepare_colmap_by_nerf(video_path, nerf_path, fps=args.fps, aabb_scale=args.aabb_scale)
+        if args.use_video:
+            prepare_colmap_by_nerf_by_video(args.dataset, nerf_path, fps=args.fps, aabb_scale=args.aabb_scale)
+        else:
+            prepare_colmap_by_nerf_by_image(args.dataset, nerf_path, aabb_scale=args.aabb_scale)
 
-    transfer_camera_to_onepose(video_path)
+    transfer_camera_to_onepose(args.dataset)
