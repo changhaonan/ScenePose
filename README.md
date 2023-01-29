@@ -27,3 +27,7 @@ System one in all.
 - Run Tracking & Segmentation
 - Run OnePose SFM
 - Run OnePose Demo
+
+# TODO
+
+- [ ] Fix the bug to make the SFM support not full image pairs.
