@@ -11,7 +11,9 @@
             "program": "${workspaceFolder}/scripts/star_transfer.py",
             "args": [
                 "--dataset",
-                "cracker_box_icg/cracker_box_icg_1"
+                "cracker_box_icg/cracker_box_icg_1",
+                "--mode",
+                "reconstruct"
             ],
             "console": "integratedTerminal",
             "justMyCode": true

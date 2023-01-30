@@ -12,7 +12,21 @@ def prepare_colmap_by_nerf_by_video(data_set_path, nerf_path, fps=10, aabb_scale
 
 def prepare_colmap_by_nerf_by_image(data_set_path, nerf_path, aabb_scale=4):
     os.chdir(data_set_path)
-    os.system(f"python {nerf_path}/scripts/colmap2nerf.py --keep_colmap_coords --images images --run_colmap --aabb_scale {aabb_scale}")
+    # check if exists camera file
+    if not os.path.exists(os.path.join(data_set_path, "intrinsics.txt")):
+        intrinsic_exist = False
+        intrinsic = []
+    else:
+        intrinsic_exist = True
+        with open(os.path.join(data_set_path, "intrinsics.txt"), "r") as f:
+            lines = f.readlines()
+            intrinsic = [float(line.split(":")[1]) for line in lines] 
+    
+    if not intrinsic_exist:
+        # if not intrinsic is set, let colmap compute intrinsic
+        os.system(f"python {nerf_path}/scripts/colmap2nerf.py --keep_colmap_coords --images images --run_colmap --aabb_scale {aabb_scale}")
+    else:
+        os.system(f"python {nerf_path}/scripts/colmap2nerf.py --keep_colmap_coords --images images --run_colmap --colmap_camera_model PINHOLE --colmap_camera_params {intrinsic[0]},{intrinsic[1]},{intrinsic[2]},{intrinsic[3]} --aabb_scale {aabb_scale}")
     # copy images to color folder
     copy_image_to_onepose(data_set_path, False)
 

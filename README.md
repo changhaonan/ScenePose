@@ -30,4 +30,4 @@ System one in all.
 
 # TODO
 
-- [ ] Fix the bug to make the SFM support not full image pairs.
+- [ ] Fix the camera intrinsics while optimizing.
